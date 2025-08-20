@@ -9,7 +9,7 @@
 </head>
 
 <body>
-
+    <?= $this->renderSection('halaman') ?>
 </body>
 
 </html>
