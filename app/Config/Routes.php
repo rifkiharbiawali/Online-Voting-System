@@ -13,6 +13,8 @@ $routes->get('/login', 'Auth::index');
 //proses login
 $routes->post('/auth/login', 'Auth::login');
 
+//proses logout
+$routes->get('/logout', 'Auth::logout');
 
 //halaman admin
-$routes->get('/dashboard-admin', 'Admin::index');
+$routes->get('/dashboard-admin', 'Admin::index', ['filter' => 'auth']);

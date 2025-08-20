@@ -22,7 +22,7 @@ class Auth extends BaseController
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
 
-        $validasi = $user->where('nama_lengkap', $username)->first();
+        $validasi = $user->where('nik', $username)->first();
 
         if ($validasi) {
             $pw = $validasi['password'];
@@ -36,6 +36,7 @@ class Auth extends BaseController
                     'password' => $validasi['password'],
                     'demographics' => $validasi['demographics'],
                     'role' => $validasi['role'],
+                    'logged_in' => true,
                 ];
                 session()->set($set_sesi);
                 return redirect()->to('/dashboard-admin');
@@ -47,5 +48,11 @@ class Auth extends BaseController
             session()->setFlashdata('psn', 'NIK tidak ada');
             return redirect()->to('/');
         }
+    }
+
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to('/');
     }
 }
